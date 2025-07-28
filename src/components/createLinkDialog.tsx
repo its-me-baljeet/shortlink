@@ -14,6 +14,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Loader2Icon } from "lucide-react"
+import { useRouter } from "next/navigation"
 import { FormEvent, useState } from "react"
 import { toast } from "sonner"
 
@@ -21,6 +22,7 @@ export function CreateLinkDialog() {
     const [isOpen, setIsOpen] = useState(false);
     const [loading, setLoading] = useState(false);
     const [url, setUrl] = useState("");
+    const router = useRouter();
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
@@ -34,6 +36,7 @@ export function CreateLinkDialog() {
             setUrl("");
             toast.success("Short Link Created!");
             setIsOpen(false);
+            router.refresh();
         } else {
             toast.error("Something went wrong! Please try again.");
         }
@@ -46,7 +49,7 @@ export function CreateLinkDialog() {
                 <Button variant="outline">+ create link</Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} className="flex flex-col gap-5">
                     <DialogHeader>
                         <DialogTitle>Create Link</DialogTitle>
                         <DialogDescription>

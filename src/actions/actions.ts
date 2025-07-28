@@ -62,3 +62,22 @@ export async function checkUrl(shortCode: string){
         console.error("Database error: ", error);
     }
 }
+
+export async function deleteUrl(linkId: string){
+    try{
+        const resp = await db.link.delete({
+            where: {
+                id: linkId
+            }
+        });
+        return {
+            success: true
+        }
+    }catch(error){
+        console.error(error);
+        return{
+            success:false,
+            message: `error occured: ${error}`
+        }
+    }
+}
