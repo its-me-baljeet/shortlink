@@ -3,7 +3,7 @@ import { Loader2 } from "lucide-react";
 import { notFound, redirect } from "next/navigation";
 import { Suspense } from "react";
 
-export default function ({ params }: {
+export default function ValidatePage({ params }: {
   params: {
     shortCode: string;
   }
