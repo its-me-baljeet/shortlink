@@ -1,14 +1,16 @@
 import { checkUrl } from "@/actions/actions";
 import { Loader2 } from "lucide-react";
-import { redirect } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { Suspense } from "react";
 
-export default function ValidatePage({ params }: {
-  params: {
+export default async function ValidatePage({ params }: {
+  params: 
+    Promise<{
     shortCode: string;
-  }
+    }>
 }) {
-  const shortCode = params.shortCode;
+  const resp = await params;
+  const shortCode = resp.shortCode;
 
   return (
     <main className="h-screen w-screen flex justify-center items-center">
