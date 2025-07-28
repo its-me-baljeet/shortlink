@@ -1,6 +1,6 @@
 import { checkUrl } from "@/actions/actions";
 import { Loader2 } from "lucide-react";
-import { notFound, redirect } from "next/navigation";
+import { redirect } from "next/navigation";
 import { Suspense } from "react";
 
 export default function ValidatePage({ params }: {
@@ -21,12 +21,10 @@ export default function ValidatePage({ params }: {
   );
 }
 
-export async function CheckingUrl({ shortCode }: { shortCode: string }) {
+async function CheckingUrl({ shortCode }: { shortCode: string }) {
   const link = await checkUrl(shortCode);
   if (link && link) {
     redirect(link);
-  } else {
-    notFound();
   }
   return null;
 }
